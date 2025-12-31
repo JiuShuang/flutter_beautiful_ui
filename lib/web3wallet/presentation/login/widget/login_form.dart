@@ -11,9 +11,7 @@ class LoginForm extends StatefulWidget {
 
 class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
   late AnimationController _logoController;
-  late AnimationController _titleController;
-  late AnimationController _inputAndButtonController;
-  late AnimationController _typeController;
+  late AnimationController _formController;
   late Animation<double> _logoAnimation;
   late Animation<double> _titleAnimation;
   late Animation<double> _usernameAnimation;
@@ -29,19 +27,9 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
       vsync: this,
       duration: Duration(seconds: 2),
     );
-    _titleController = AnimationController(
-      duration: Duration(seconds: 1),
-      vsync: this,
-    );
-    _inputAndButtonController = AnimationController(
-      duration: Duration(seconds: 2),
-      vsync: this,
-    );
-    _typeController = AnimationController(
-      vsync: this,
-      duration: Duration(milliseconds: 500),
-    );
-
+    _formController=AnimationController(
+      duration: Duration(seconds: 4),
+      vsync: this);
     ///Init Logo Animation
     _logoAnimation=CurvedAnimation(
       parent: _logoController,
@@ -49,56 +37,42 @@ class _LoginFormState extends State<LoginForm> with TickerProviderStateMixin {
     );
     ///Init Title Animation
     _titleAnimation = CurvedAnimation(
-      parent: _titleController,
-      curve: Curves.easeIn,
+      parent: _formController,
+      curve: Interval(0, 0.2),
     );
-
     /// Init Input and Button Aimation
     _usernameAnimation = CurvedAnimation(
-      parent: _inputAndButtonController,
-      curve: Interval(0, 0.25),
+      parent: _formController,
+      curve: Interval(0.2, 0.4),
     );
     _emailAnimation = CurvedAnimation(
-      parent: _inputAndButtonController,
-      curve: Interval(0.25, 0.5),
+      parent: _formController,
+      curve: Interval(0.4, 0.6),
     );
     _passwordAnimation = CurvedAnimation(
-      parent: _inputAndButtonController,
-      curve: Interval(0.5, 0.75),
+      parent: _formController,
+      curve: Interval(0.6, 0.8),
     );
     _buttonAnimation = CurvedAnimation(
-      parent: _inputAndButtonController,
-      curve: Interval(0.75, 1),
+      parent: _formController,
+      curve: Interval(0.8, 0.9),
     );
-
     /// Init Login Type Animation
     _typeAnimation = CurvedAnimation(
-      parent: _typeController,
-      curve: Curves.easeIn,
+      parent: _formController,
+      curve: Interval(0.9, 1),
     );
 
     /// Start Animation
     _logoController.repeat(reverse: true);
-    _titleController.forward();
-    _titleController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _inputAndButtonController.forward();
-      }
-    });
-    _inputAndButtonController.addStatusListener((status) {
-      if (status == AnimationStatus.completed) {
-        _typeController.forward();
-      }
-    });
+    _formController.forward();
     super.initState();
   }
 
   @override
   void dispose() {
     _logoController.dispose();
-    _titleController.dispose();
-    _inputAndButtonController.dispose();
-    _typeController.dispose();
+    _formController.dispose();
     super.dispose();
   }
 

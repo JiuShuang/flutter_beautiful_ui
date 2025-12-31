@@ -36,6 +36,10 @@ class $ImagesWeb3walletGen {
   /// File path: images/web3wallet/wallet_home.svg
   String get walletHome => 'images/web3wallet/wallet_home.svg';
 
+  /// File path: images/web3wallet/wallet_home_robot.png
+  AssetGenImage get walletHomeRobot =>
+      const AssetGenImage('images/web3wallet/wallet_home_robot.png');
+
   /// File path: images/web3wallet/wallet_login_robot.png
   AssetGenImage get walletLoginRobot =>
       const AssetGenImage('images/web3wallet/wallet_login_robot.png');
@@ -58,6 +62,7 @@ class $ImagesWeb3walletGen {
     walletFacebook,
     walletGoogle,
     walletHome,
+    walletHomeRobot,
     walletLoginRobot,
     walletNews,
     walletProfile,

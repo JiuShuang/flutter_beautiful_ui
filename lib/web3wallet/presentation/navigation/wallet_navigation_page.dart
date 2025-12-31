@@ -1,5 +1,10 @@
 import 'package:flutter_beautiful_ui/gen/assets.gen.dart';
+import 'package:flutter_beautiful_ui/web3wallet/presentation/home/wallet_home_page.dart';
 import 'package:flutter_beautiful_ui/web3wallet/presentation/navigation/widget/wallet_bottom_navigation.dart';
+import 'package:flutter_beautiful_ui/web3wallet/presentation/news/wallet_news_page.dart';
+import 'package:flutter_beautiful_ui/web3wallet/presentation/profile/wallet_profile_page.dart';
+import 'package:flutter_beautiful_ui/web3wallet/presentation/rate/wallet_rate_page.dart';
+import 'package:flutter_beautiful_ui/web3wallet/presentation/wallet/wallet_wallet_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_beautiful_ui/web3wallet/widget/blur_color_widget.dart';
@@ -13,12 +18,21 @@ class WalletNavigationPage extends StatefulWidget {
 
 class _WalletNavigationPageState extends State<WalletNavigationPage> {
   int _pageIndex = 0;
+
   final List<String> _navItemIcon = [
     Assets.images.web3wallet.walletHome,
     Assets.images.web3wallet.walletRate,
     Assets.images.web3wallet.walletWallet,
     Assets.images.web3wallet.walletNews,
     Assets.images.web3wallet.walletProfile,
+  ];
+
+  final List<Widget> _pages=[
+    WalletHomePage(),
+    WalletRatePage(),
+    WalletWalletPage(),
+    WalletNewsPage(),
+    WalletProfilePage()
   ];
   
 
@@ -50,6 +64,7 @@ class _WalletNavigationPageState extends State<WalletNavigationPage> {
                 right: -w * 0.3,
                 child: BlurColorWidget(size: 251, color: Color(0xffFFC2C6)),
               ),
+              _pages[_pageIndex],
               Positioned(
                 bottom: 0,
                 child: WalletBottomNavigation(
