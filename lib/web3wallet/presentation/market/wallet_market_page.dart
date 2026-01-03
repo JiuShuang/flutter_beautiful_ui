@@ -29,8 +29,8 @@ class _WalletMarketPageState extends State<WalletMarketPage> {
     return CustomScrollView(
       slivers: [
         SliverAppBar(
-          backgroundColor: Colors.transparent,
           centerTitle: false,
+          backgroundColor: Colors.transparent,
           title: Text(
             "Market",
             style: TextStyle(
@@ -45,7 +45,7 @@ class _WalletMarketPageState extends State<WalletMarketPage> {
             child: WalletMarketSearch(marketType: _marketType),
           ),
         ),
-        WalletMarketTrendList(moneyType: _moneyType),
+        WalletMarketTrendList(moneyType: _moneyType)
       ],
     );
   }

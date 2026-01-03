@@ -4,7 +4,7 @@ import 'package:flutter_beautiful_ui/web3wallet/presentation/navigation/widget/w
 import 'package:flutter_beautiful_ui/web3wallet/presentation/news/wallet_news_page.dart';
 import 'package:flutter_beautiful_ui/web3wallet/presentation/profile/wallet_profile_page.dart';
 import 'package:flutter_beautiful_ui/web3wallet/presentation/market/wallet_market_page.dart';
-import 'package:flutter_beautiful_ui/web3wallet/presentation/wallet/wallet_wallet_page.dart';
+import 'package:flutter_beautiful_ui/web3wallet/presentation/history/wallet_history_page.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_beautiful_ui/web3wallet/widget/blur_color_widget.dart';
@@ -30,7 +30,7 @@ class _WalletNavigationPageState extends State<WalletNavigationPage> {
   final List<Widget> _pages=[
     WalletHomePage(),
     WalletMarketPage(),
-    WalletWalletPage(),
+    WalletHistoryPage(),
     WalletNewsPage(),
     WalletProfilePage()
   ];
