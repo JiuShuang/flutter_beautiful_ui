@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_beautiful_ui/web3wallet/wallet_color.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:go_router/go_router.dart';
 
 class WalletHomePriceAlterts extends StatefulWidget {
   final List<String> alertsIcons;
@@ -183,7 +184,7 @@ class _PriceAlertsWidgetState extends State<PriceAlertsWidget> {
                                     child: Text("Sell"),
                                   ),
                                   TextButton(
-                                    onPressed: () {},
+                                    onPressed: ()=>context.push("/priceAlerts"),
                                     child: Text("More"),
                                   ),
                                 ],
