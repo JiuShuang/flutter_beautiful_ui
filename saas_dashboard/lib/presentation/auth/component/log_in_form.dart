@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
+import 'package:saas_dashboard/presentation/home/home_page.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_label_textfield.dart';
 
 class LogInForm extends StatefulWidget {
@@ -108,7 +109,13 @@ class _LogInFormState extends State<LogInForm> {
               borderRadius: BorderRadius.circular(AppConstrain.borderRadius),
             ),
           ),
-          onPressed: () {},
+          onPressed: () {
+            Navigator.of(context).push(
+              MaterialPageRoute(
+                builder: (context) => HomePage(),
+              ),
+            );
+          },
           child: Text(
             "Log In",
             style: TextStyle(
@@ -130,7 +137,7 @@ class _LogInFormState extends State<LogInForm> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                   ),
-                  onPressed: ()=>widget.toSignUp(),
+                  onPressed: () => widget.toSignUp(),
                   child: Text(
                     "New Account",
                     style: TextStyle(

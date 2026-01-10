@@ -3,8 +3,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
-import 'package:saas_dashboard/presentation/auth/widgets/log_in_form.dart';
-import 'package:saas_dashboard/presentation/auth/widgets/sign_up_form.dart';
+import 'package:saas_dashboard/presentation/auth/component/log_in_form.dart';
+import 'package:saas_dashboard/presentation/auth/component/sign_up_form.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});
@@ -48,7 +48,7 @@ class _AuthPageState extends State<AuthPage>
   Widget build(BuildContext context) {
     return DefaultTextStyle(
       style: TextTheme.of(context).bodySmall ?? TextStyle(),
-      child: Container(
+      child: ColoredBox(
         color: AppColors.backgroundColor,
         child: Row(
           children: [

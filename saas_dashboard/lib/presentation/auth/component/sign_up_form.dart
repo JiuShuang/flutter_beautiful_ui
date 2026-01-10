@@ -131,7 +131,7 @@ class _SignUpFormState extends State<SignUpForm> {
               borderRadius: BorderRadius.circular(AppConstrain.borderRadius),
             ),
           ),
-          onPressed: () {},
+          onPressed: () => widget.toLogIn(),
           child: Text(
             "Create Account",
             style: TextStyle(
@@ -153,7 +153,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                   ),
-                  onPressed: ()=>widget.toLogIn(),
+                  onPressed: () => widget.toLogIn(),
                   child: Text(
                     "Log In",
                     style: TextStyle(

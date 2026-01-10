@@ -11,7 +11,7 @@ class AppTheme {
         borderRadius: BorderRadius.circular(5),
       ),
     ),
-    
+
     listTileTheme: ListTileThemeData(contentPadding: EdgeInsets.zero),
     buttonTheme: ButtonThemeData(buttonColor: AppColors.secondColor),
     textButtonTheme: TextButtonThemeData(
@@ -19,6 +19,11 @@ class AppTheme {
         backgroundColor: WidgetStatePropertyAll(AppColors.secondColor),
         foregroundColor: WidgetStatePropertyAll(Colors.white),
         overlayColor: WidgetStatePropertyAll(Colors.transparent),
+        shape: WidgetStatePropertyAll(
+          RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(AppConstrain.borderRadius),
+          ),
+        ),
         textStyle: WidgetStatePropertyAll(
           TextStyle(
             color: Colors.white,

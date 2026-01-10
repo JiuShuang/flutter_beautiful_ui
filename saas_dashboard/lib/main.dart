@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_theme.dart';
 import 'package:saas_dashboard/presentation/auth/auth_page.dart';
+import 'package:saas_dashboard/presentation/home/home_page.dart';
 import 'package:window_manager/window_manager.dart';
 
 void main() async {
@@ -25,7 +26,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.darkTheme,
-      home: Material(child: AuthPage()),
+      home: Material(child: HomePage()),
     );
   }
 }
