@@ -20,6 +20,9 @@ class $ImagesGen {
   /// File path: images/avatar.jpg
   AssetGenImage get avatar => const AssetGenImage('images/avatar.jpg');
 
+  /// File path: images/bag.svg
+  String get bag => 'images/bag.svg';
+
   /// File path: images/calendar.svg
   String get calendar => 'images/calendar.svg';
 
@@ -29,8 +32,14 @@ class $ImagesGen {
   /// File path: images/facebook.svg
   String get facebook => 'images/facebook.svg';
 
+  /// File path: images/game.svg
+  String get game => 'images/game.svg';
+
   /// File path: images/gmail.svg
   String get gmail => 'images/gmail.svg';
+
+  /// File path: images/heart.svg
+  String get heart => 'images/heart.svg';
 
   /// File path: images/invoice.svg
   String get invoice => 'images/invoice.svg';
@@ -62,14 +71,20 @@ class $ImagesGen {
   /// File path: images/signUpImage.svg
   String get signUpImage => 'images/signUpImage.svg';
 
+  /// File path: images/work.svg
+  String get work => 'images/work.svg';
+
   /// List of all assets
   List<dynamic> get values => [
     analytics,
     avatar,
+    bag,
     calendar,
     dashboard,
     facebook,
+    game,
     gmail,
+    heart,
     invoice,
     light,
     logInImage,
@@ -80,6 +95,7 @@ class $ImagesGen {
     schedule,
     setting,
     signUpImage,
+    work,
   ];
 }
 
