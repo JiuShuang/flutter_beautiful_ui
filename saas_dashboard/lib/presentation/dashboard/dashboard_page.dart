@@ -1,4 +1,3 @@
-import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
 
 import 'package:saas_dashboard/constant/app_colors.dart';
@@ -7,7 +6,7 @@ import 'package:saas_dashboard/presentation/dashboard/component/dashboard_analyt
 import 'package:saas_dashboard/presentation/dashboard/component/dashboard_orders.dart';
 import 'package:saas_dashboard/presentation/dashboard/component/dashboard_reports.dart';
 import 'package:saas_dashboard/presentation/dashboard/component/dashboard_top_selling.dart';
-import 'package:saas_dashboard/presentation/dashboard/component/summary_data_area.dart';
+import 'package:saas_dashboard/presentation/dashboard/component/dashboard_summary_data.dart';
 
 class DashboardPage extends StatefulWidget {
   const DashboardPage({super.key});
@@ -16,7 +15,30 @@ class DashboardPage extends StatefulWidget {
   State<DashboardPage> createState() => _DashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _DashboardPageState extends State<DashboardPage>
+    with SingleTickerProviderStateMixin {
+  late final AnimationController _controller;
+  late Animation _reportAndAnalyticsAnimation;
+  late Animation _orderAndSellingAnimation;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(seconds: 1),
+    );
+    _reportAndAnalyticsAnimation = CurvedAnimation(
+      parent: _controller,
+      curve: Interval(0, 0.5),
+    );
+    _orderAndSellingAnimation = CurvedAnimation(
+      curve: Interval(0.5, 1),
+      parent: _controller,
+    );
+    _controller.forward();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(
@@ -69,23 +91,53 @@ class _DashboardPageState extends State<DashboardPage> {
               ],
             ),
             SizedBox(height: AppConstrain.paddingMedium),
-            SummaryDataArea(width: width),
+            DashboardSummaryData(width: width),
             SizedBox(height: AppConstrain.paddingMedium),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                DashboardReports(width: width, height: height),
-                DashboardAnalytics(width: width, height: height),
-              ],
-            ),
-            SizedBox(height: AppConstrain.paddingMedium),
-            Expanded(
+            AnimatedBuilder(
+              animation: _reportAndAnalyticsAnimation,
+              builder: (context, child) {
+                return Transform.translate(
+                  offset: Offset(
+                    0,
+                    20.0 * (1 - _reportAndAnalyticsAnimation.value),
+                  ),
+                  child: Opacity(
+                    opacity: _reportAndAnalyticsAnimation.value,
+                    child: child,
+                  ),
+                );
+              },
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  DashboardOrders(width: width),
-                  DashboardTopSelling(width: width),
+                  DashboardReports(width: width, height: height),
+                  DashboardAnalytics(width: width, height: height),
                 ],
+              ),
+            ),
+            SizedBox(height: AppConstrain.paddingMedium),
+            Expanded(
+              child: AnimatedBuilder(
+                animation: _orderAndSellingAnimation,
+                builder: (context, child) {
+                  return Transform.translate(
+                    offset: Offset(
+                      0,
+                      20.0 * (1 - _orderAndSellingAnimation.value),
+                    ),
+                    child: Opacity(
+                      opacity: _orderAndSellingAnimation.value,
+                      child: child,
+                    ),
+                  );
+                },
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    DashboardOrders(width: width),
+                    DashboardTopSelling(width: width, height: height),
+                  ],
+                ),
               ),
             ),
           ],

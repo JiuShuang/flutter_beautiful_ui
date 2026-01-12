@@ -17,6 +17,9 @@ class $ImagesGen {
   /// File path: images/analytics.svg
   String get analytics => 'images/analytics.svg';
 
+  /// File path: images/arrow.svg
+  String get arrow => 'images/arrow.svg';
+
   /// File path: images/avatar.jpg
   AssetGenImage get avatar => const AssetGenImage('images/avatar.jpg');
 
@@ -41,6 +44,9 @@ class $ImagesGen {
   /// File path: images/heart.svg
   String get heart => 'images/heart.svg';
 
+  /// File path: images/iPhone12.png
+  AssetGenImage get iPhone12 => const AssetGenImage('images/iPhone12.png');
+
   /// File path: images/invoice.svg
   String get invoice => 'images/invoice.svg';
 
@@ -62,6 +68,12 @@ class $ImagesGen {
   /// File path: images/notification.svg
   String get notification => 'images/notification.svg';
 
+  /// File path: images/order.png
+  AssetGenImage get order => const AssetGenImage('images/order.png');
+
+  /// File path: images/product.svg
+  String get product => 'images/product.svg';
+
   /// File path: images/schedule.svg
   String get schedule => 'images/schedule.svg';
 
@@ -77,6 +89,7 @@ class $ImagesGen {
   /// List of all assets
   List<dynamic> get values => [
     analytics,
+    arrow,
     avatar,
     bag,
     calendar,
@@ -85,6 +98,7 @@ class $ImagesGen {
     game,
     gmail,
     heart,
+    iPhone12,
     invoice,
     light,
     logInImage,
@@ -92,6 +106,8 @@ class $ImagesGen {
     logout,
     messages,
     notification,
+    order,
+    product,
     schedule,
     setting,
     signUpImage,

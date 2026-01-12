@@ -67,7 +67,7 @@ class _HomeNavigationBarState extends State<HomeNavigationBar> {
             ),
             padding: EdgeInsets.symmetric(
               horizontal: AppConstrain.paddingLarge,
-              vertical: AppConstrain.paddingSmall / 2,
+              vertical: AppConstrain.paddingSmall,
             ),
             decoration: BoxDecoration(
               gradient: isActive
