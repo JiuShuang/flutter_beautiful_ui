@@ -6,15 +6,15 @@ import 'package:saas_dashboard/entity/analytics/analytics_selling_product.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_table_title.dart';
 
-class AnalyticsSellingTable extends StatefulWidget {
+class ProductSellingTable extends StatefulWidget {
   final double width;
-  const AnalyticsSellingTable({super.key, required this.width});
+  const ProductSellingTable({super.key, required this.width});
 
   @override
-  State<AnalyticsSellingTable> createState() => _AnalyticsSellingTableState();
+  State<ProductSellingTable> createState() => _ProductSellingTableState();
 }
 
-class _AnalyticsSellingTableState extends State<AnalyticsSellingTable> {
+class _ProductSellingTableState extends State<ProductSellingTable> {
   late List<AnalyticsSellingProduct> _productList = [];
 
   @override

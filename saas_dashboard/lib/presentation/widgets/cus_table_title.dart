@@ -16,32 +16,30 @@ class CusTableTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return TableCell(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: AppConstrain.paddingSmall / 2),
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsetsGeometry.only(
-                right: AppConstrain.paddingSmall,
-              ),
-              child: Text(
-                text,
-                style: TextStyle(color: Color(0xff030229), fontSize: 11),
-              ),
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: AppConstrain.paddingSmall / 2),
+      child: Row(
+        children: [
+          Padding(
+            padding: EdgeInsetsGeometry.only(
+              right: AppConstrain.paddingSmall,
             ),
-            if (showArrow)
-              GestureDetector(
-                child: SvgPicture.asset(
-                  Assets.images.arrow,
-                  colorFilter: ColorFilter.mode(
-                    Color(0xffCDCCD4),
-                    BlendMode.srcIn,
-                  ),
+            child: Text(
+              text,
+              style: TextStyle(color: Color(0xff030229), fontSize: 11),
+            ),
+          ),
+          if (showArrow)
+            GestureDetector(
+              child: SvgPicture.asset(
+                Assets.images.arrow,
+                colorFilter: ColorFilter.mode(
+                  Color(0xffCDCCD4),
+                  BlendMode.srcIn,
                 ),
               ),
-          ],
-        ),
+            ),
+        ],
       ),
     );
   }

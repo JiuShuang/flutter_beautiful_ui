@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
-import 'package:saas_dashboard/presentation/analytics/widget/analytics_add_bar_chart.dart';
-import 'package:saas_dashboard/presentation/analytics/widget/analytics_sales_pie_chart.dart';
-import 'package:saas_dashboard/presentation/analytics/widget/analytics_selling_table.dart';
-import 'package:saas_dashboard/presentation/analytics/widget/analytics_total_line_chart.dart';
+import 'package:saas_dashboard/presentation/analytics/widget/product_add_bar_chart.dart';
+import 'package:saas_dashboard/presentation/analytics/widget/product_sales_pie_chart.dart';
+import 'package:saas_dashboard/presentation/analytics/widget/product_selling_table.dart';
+import 'package:saas_dashboard/presentation/analytics/widget/product_total_line_chart.dart';
 
 class AnalyticsProduct extends StatefulWidget {
   final double width;
@@ -64,12 +64,12 @@ class _AnalyticsProductState extends State<AnalyticsProduct>
             width: widget.width * 0.65,
             child: Column(
               children: [
-                AnalyticsTotalLineChart(
+                ProductTotalLineChart(
                   width: widget.width,
                   height: widget.height,
                 ),
                 SizedBox(height: AppConstrain.paddingMedium),
-                Expanded(child: AnalyticsSellingTable(width: widget.width)),
+                Expanded(child: ProductSellingTable(width: widget.width)),
               ],
             ),
           ),
@@ -86,13 +86,13 @@ class _AnalyticsProductState extends State<AnalyticsProduct>
             width: widget.width * 0.33,
             child: Column(
               children: [
-                AnalyticsAddBarChart(
+                ProductAddBarChart(
                   width: widget.width,
                   height: widget.height,
                 ),
-                SizedBox(height: AppConstrain.paddingSmall),
+                SizedBox(height: AppConstrain.paddingMedium),
                 Expanded(
-                  child: AnalyticsSalesPieChart(
+                  child: ProductSalesPieChart(
                     width: widget.width,
                     height: widget.height,
                   ),

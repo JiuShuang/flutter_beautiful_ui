@@ -5,20 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 
-class AnalyticsAddBarChart extends StatefulWidget {
+class ProductAddBarChart extends StatefulWidget {
   final double width;
   final double height;
-  const AnalyticsAddBarChart({
+  const ProductAddBarChart({
     super.key,
     required this.width,
     required this.height,
   });
 
   @override
-  State<AnalyticsAddBarChart> createState() => _AnalyticsAddBarChartState();
+  State<ProductAddBarChart> createState() => _ProductAddBarChartState();
 }
 
-class _AnalyticsAddBarChartState extends State<AnalyticsAddBarChart> {
+class _ProductAddBarChartState extends State<ProductAddBarChart> {
   final Random _random = Random();
 
   @override

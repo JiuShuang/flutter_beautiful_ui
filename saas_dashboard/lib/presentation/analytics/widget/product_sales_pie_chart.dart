@@ -3,20 +3,20 @@ import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_pie_chart.dart';
 
-class AnalyticsSalesPieChart extends StatefulWidget {
+class ProductSalesPieChart extends StatefulWidget {
   final double width;
   final double height;
-  const AnalyticsSalesPieChart({
+  const ProductSalesPieChart({
     super.key,
     required this.width,
     required this.height,
   });
 
   @override
-  State<AnalyticsSalesPieChart> createState() => _AnalyticsSalesPieChartState();
+  State<ProductSalesPieChart> createState() => _ProductSalesPieChartState();
 }
 
-class _AnalyticsSalesPieChartState extends State<AnalyticsSalesPieChart> {
+class _ProductSalesPieChartState extends State<ProductSalesPieChart> {
   final List<PieData> _pieDataList = [
     PieData(color: Color(0xffF7FAFF), value: 20),
     PieData(color: Color(0xffFF8F6B), value: 25),
@@ -60,16 +60,34 @@ class _AnalyticsSalesPieChartState extends State<AnalyticsSalesPieChart> {
           Expanded(
             child: LayoutBuilder(
               builder: (context, constraints) {
-                return CustomPaint(
-                  painter: CusPieChartPaint(
-                    center: Offset(
-                      constraints.maxWidth / 2,
-                      constraints.maxHeight / 2,
+                return Stack(
+                  children: [
+                    CustomPaint(
+                      painter: CusPieChartPaint(
+                        center: Offset(
+                          constraints.maxWidth / 2,
+                          constraints.maxHeight / 2,
+                        ),
+                        strokeWidth: 10,
+                        centerSPaceRadius: widget.height * 0.12,
+                        pieDataList: _pieDataList,
+                      ),
                     ),
-                    strokeWidth: 10,
-                    centerSPaceRadius: widget.height * 0.12,
-                    pieDataList: _pieDataList,
-                  ),
+                    Center(
+                      child: Container(
+                        padding: EdgeInsets.all(AppConstrain.paddingSmall / 2),
+                        decoration: BoxDecoration(
+                          color: Color(0xffEFF4FF),
+                          shape: BoxShape.circle,
+                        ),
+                        child: Icon(
+                          Icons.show_chart_rounded,
+                          size: 35,
+                          color: Color(0xff5B93FF),
+                        ),
+                      ),
+                    ),
+                  ],
                 );
               },
             ),

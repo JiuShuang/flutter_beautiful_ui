@@ -5,21 +5,21 @@ import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 
-class AnalyticsTotalLineChart extends StatefulWidget {
+class ProductTotalLineChart extends StatefulWidget {
   final double width;
   final double height;
-  const AnalyticsTotalLineChart({
+  const ProductTotalLineChart({
     super.key,
     required this.width,
     required this.height,
   });
 
   @override
-  State<AnalyticsTotalLineChart> createState() =>
-      _AnalyticsTotalLineChartState();
+  State<ProductTotalLineChart> createState() =>
+      _ProductTotalLineChartState();
 }
 
-class _AnalyticsTotalLineChartState extends State<AnalyticsTotalLineChart> {
+class _ProductTotalLineChartState extends State<ProductTotalLineChart> {
   LineChartData totalProductData() {
     return LineChartData(
       lineTouchData: LineTouchData(enabled: false),
