@@ -2,21 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
+import 'package:saas_dashboard/entity/dashboard/summary_data.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
-
-class SummaryData {
-  final String icon;
-  final Color backgroundColor;
-  final String number;
-  final String type;
-
-  SummaryData({
-    required this.icon,
-    required this.backgroundColor,
-    required this.number,
-    required this.type,
-  });
-}
 
 class DashboardSummaryData extends StatefulWidget {
   final double width;
@@ -65,6 +52,12 @@ class _DashboardSummaryDataState extends State<DashboardSummaryData>
     );
     _controller.forward();
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 
   @override

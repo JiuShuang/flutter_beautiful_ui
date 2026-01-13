@@ -6,7 +6,8 @@ import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/home/widget/home_navigation_bar.dart';
 
 class HomeNavigation extends StatefulWidget {
-  const HomeNavigation({super.key});
+  final ValueChanged<int> onChanged;
+  const HomeNavigation({super.key, required this.onChanged});
 
   @override
   State<HomeNavigation> createState() => _HomeNavigationState();
@@ -66,7 +67,7 @@ class _HomeNavigationState extends State<HomeNavigation> {
                     navigationList: _navigationList,
                     activeIndex: 0,
                     showLabel: _showLabel,
-                    onChanged: (value) {},
+                    onChanged: (value)=>widget.onChanged(value),
                   );
                 },
               ),

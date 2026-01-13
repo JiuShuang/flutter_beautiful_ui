@@ -3,20 +3,20 @@ import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_pie_chart.dart';
 
-class DashboardAnalytics extends StatefulWidget {
+class AnalyticsSalesPieChart extends StatefulWidget {
   final double width;
   final double height;
-  const DashboardAnalytics({
+  const AnalyticsSalesPieChart({
     super.key,
     required this.width,
     required this.height,
   });
 
   @override
-  State<DashboardAnalytics> createState() => _DashboardAnalyticsState();
+  State<AnalyticsSalesPieChart> createState() => _AnalyticsSalesPieChartState();
 }
 
-class _DashboardAnalyticsState extends State<DashboardAnalytics> {
+class _AnalyticsSalesPieChartState extends State<AnalyticsSalesPieChart> {
   final List<PieData> _pieDataList = [
     PieData(color: Color(0xffF7FAFF), value: 20),
     PieData(color: Color(0xffFF8F6B), value: 25),
@@ -25,15 +25,15 @@ class _DashboardAnalyticsState extends State<DashboardAnalytics> {
   ];
 
   final List<PieIndictor> _pieIndictorList = [
-    PieIndictor(color: Color(0xff5B93FF), label: "Sale"),
-    PieIndictor(color: Color(0xffFFD66B), label: "Distribute"),
-    PieIndictor(color: Color(0xffFF8F6B), label: "Return"),
+    PieIndictor(color: Color(0xff5B93FF), label: "Total Sales"),
+    PieIndictor(color: Color(0xffFFD66B), label: "Total Order"),
+    PieIndictor(color: Color(0xffFF8F6B), label: "Order Cancel"),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.38,
+      width: widget.width * 0.33,
       height: widget.height * 0.4,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
@@ -46,7 +46,10 @@ class _DashboardAnalyticsState extends State<DashboardAnalytics> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Text("Analytics", style: TextTheme.of(context).bodyMedium),
+              Text(
+                "Product Sales Analytics",
+                style: TextTheme.of(context).bodyMedium,
+              ),
               Icon(
                 Icons.more_horiz_outlined,
                 size: 15,
@@ -66,8 +69,6 @@ class _DashboardAnalyticsState extends State<DashboardAnalytics> {
                     strokeWidth: 10,
                     centerSPaceRadius: widget.height * 0.12,
                     pieDataList: _pieDataList,
-                    title: '80%',
-                    subtitle: 'Transactions',
                   ),
                 );
               },
@@ -86,7 +87,7 @@ class _DashboardAnalyticsState extends State<DashboardAnalytics> {
                     ),
                     decoration: BoxDecoration(
                       color: value.color,
-                      borderRadius: BorderRadius.circular(5),
+                      shape: BoxShape.circle,
                     ),
                   ),
                   Text(value.label, style: TextStyle(fontSize: 10)),

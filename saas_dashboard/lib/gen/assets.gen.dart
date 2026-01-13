@@ -14,6 +14,9 @@ import 'package:flutter/widgets.dart';
 class $ImagesGen {
   const $ImagesGen();
 
+  /// File path: images/airdot.png
+  AssetGenImage get airdot => const AssetGenImage('images/airdot.png');
+
   /// File path: images/analytics.svg
   String get analytics => 'images/analytics.svg';
 
@@ -26,8 +29,14 @@ class $ImagesGen {
   /// File path: images/bag.svg
   String get bag => 'images/bag.svg';
 
+  /// File path: images/box.svg
+  String get box => 'images/box.svg';
+
   /// File path: images/calendar.svg
   String get calendar => 'images/calendar.svg';
+
+  /// File path: images/cart.svg
+  String get cart => 'images/cart.svg';
 
   /// File path: images/dashboard.svg
   String get dashboard => 'images/dashboard.svg';
@@ -83,16 +92,22 @@ class $ImagesGen {
   /// File path: images/signUpImage.svg
   String get signUpImage => 'images/signUpImage.svg';
 
+  /// File path: images/top.svg
+  String get top => 'images/top.svg';
+
   /// File path: images/work.svg
   String get work => 'images/work.svg';
 
   /// List of all assets
   List<dynamic> get values => [
+    airdot,
     analytics,
     arrow,
     avatar,
     bag,
+    box,
     calendar,
+    cart,
     dashboard,
     facebook,
     game,
@@ -111,6 +126,7 @@ class $ImagesGen {
     schedule,
     setting,
     signUpImage,
+    top,
     work,
   ];
 }

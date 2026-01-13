@@ -79,7 +79,6 @@ class _DashboardReportsState extends State<DashboardReports> {
           ),
         ),
       ),
-
       borderData: FlBorderData(show: false),
       minX: 0,
       maxX: 8,

@@ -1,26 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
+import 'package:saas_dashboard/entity/dashboard/recent_order.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
-
-class RecentOrder {
-  final String no;
-  final String image;
-  final String name;
-  final int price;
-  final int totalOrder;
-  final String totalAmount;
-
-  RecentOrder({
-    required this.no,
-    required this.image,
-    required this.name,
-    required this.price,
-    required this.totalOrder,
-    required this.totalAmount,
-  });
-}
+import 'package:saas_dashboard/presentation/widgets/cus_table_title.dart';
 
 class DashboardOrders extends StatefulWidget {
   final double width;
@@ -88,6 +71,7 @@ class _DashboardOrdersState extends State<DashboardOrders> {
               ),
             ],
           ),
+          SizedBox(height: AppConstrain.paddingSmall),
           Expanded(
             child: Table(
               defaultVerticalAlignment: TableCellVerticalAlignment.middle,
@@ -99,18 +83,18 @@ class _DashboardOrdersState extends State<DashboardOrders> {
                 4: FlexColumnWidth(2),
               },
               children: <TableRow>[
-                const TableRow(
+                TableRow(
                   decoration: BoxDecoration(
                     border: Border(
                       bottom: BorderSide(color: Color(0xffF2F2F4)),
                     ),
                   ),
                   children: <Widget>[
-                    TableTitle(text: 'Tracking no'),
-                    TableTitle(text: 'Product Name'),
-                    TableTitle(text: 'Price'),
-                    TableTitle(text: 'Total Order'),
-                    TableTitle(text: 'Total Amount', showArrow: false),
+                    CusTableTitle(text: 'Tracking no'),
+                    CusTableTitle(text: 'Product Name'),
+                    CusTableTitle(text: 'Price'),
+                    CusTableTitle(text: 'Total Order'),
+                    CusTableTitle(text: 'Total Amount', showArrow: false),
                   ],
                 ),
                 ..._ordersList.map((order) {
@@ -210,50 +194,6 @@ class _DashboardOrdersState extends State<DashboardOrders> {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class TableTitle extends StatelessWidget {
-  final String text;
-  final bool showArrow;
-  final VoidCallback? tapArrow;
-  const TableTitle({
-    super.key,
-    required this.text,
-    this.showArrow = true,
-    this.tapArrow,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return TableCell(
-      child: Padding(
-        padding: EdgeInsets.symmetric(vertical: AppConstrain.paddingSmall / 2),
-        child: Row(
-          children: [
-            Padding(
-              padding: EdgeInsetsGeometry.only(
-                right: AppConstrain.paddingSmall,
-              ),
-              child: Text(
-                text,
-                style: TextStyle(color: Color(0xff030229), fontSize: 11),
-              ),
-            ),
-            if (showArrow)
-              GestureDetector(
-                child: SvgPicture.asset(
-                  Assets.images.arrow,
-                  colorFilter: ColorFilter.mode(
-                    Color(0xffCDCCD4),
-                    BlendMode.srcIn,
-                  ),
-                ),
-              ),
-          ],
-        ),
       ),
     );
   }

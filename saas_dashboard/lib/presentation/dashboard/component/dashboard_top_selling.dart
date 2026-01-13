@@ -1,21 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
+import 'package:saas_dashboard/entity/dashboard/top_selling_data.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 
-class TopSellingProduct {
-  final String image;
-  final String name;
-  final int star;
-  final int price;
-
-  TopSellingProduct({
-    required this.image,
-    required this.name,
-    required this.star,
-    required this.price,
-  });
-}
 
 class DashboardTopSelling extends StatefulWidget {
   final double width;
