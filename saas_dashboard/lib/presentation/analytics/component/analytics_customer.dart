@@ -17,7 +17,7 @@ class _AnalyticsCustomerState extends State<AnalyticsCustomer>
   void initState() {
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 250),
+      duration: Duration(milliseconds: 500),
     );
     _animation = CurvedAnimation(curve: Curves.easeIn, parent: _controller);
     _controller.forward();

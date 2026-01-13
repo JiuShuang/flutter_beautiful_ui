@@ -1,38 +1,48 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
-import 'package:saas_dashboard/entity/analytics/customer.dart';
+import 'package:saas_dashboard/entity/invoice/invoice.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_table_title.dart';
 
-class CustomerTable extends StatefulWidget {
-  const CustomerTable({super.key});
+class InvoiceTable extends StatefulWidget {
+  const InvoiceTable({super.key});
 
   @override
-  State<CustomerTable> createState() => _CustomerTableState();
+  State<InvoiceTable> createState() => _InvoiceTableState();
 }
 
-class _CustomerTableState extends State<CustomerTable> {
-  final int flex0 = 10;
-  final int flex1 = 10;
-  final int flex2 = 8;
-  final int flex3 = 3;
-  final int flex4 = 5;
-  List<Customer> _customerList = [];
+class _InvoiceTableState extends State<InvoiceTable> {
+  final int flexSelect = 3;
+  final int flexId = 6;
+  final int flexName = 10;
+  final int flexEmail = 12;
+  final int flexDate = 8;
+  final int flexStatus = 8;
+  final int flexMoreTools = 6;
+  List<Invoice> _invoiceList = [];
+  List<bool> _checkList = [];
   final List<GlobalKey> _keys = [];
   OverlayEntry? _moreTools;
   int _activeIndex = -1;
 
-  @override
+    @override
   void initState() {
-    _customerList = List.generate(10, (index) {
+    final List<InvoiceStatus> statusList = InvoiceStatus.values;
+    _invoiceList = List.generate(10, (index) {
+      _checkList.add(false);
       _keys.add(GlobalKey());
-      return Customer(
+      final randomIndex = Random().nextInt(statusList.length);
+      return Invoice(
+        id: "#${index}76364",
         avatar: Assets.images.avatar.path,
-        name: "John Deo",
-        email: "johndoe2211@gmail.com",
-        phone: "+33757005467",
-        gender: index % 2 == 0 ? "Male" : "Female",
+        name: "Arrora gaur",
+        email: "arroragaur@gmail.com",
+        date: "12 Dec, 2020",
+        status: statusList[randomIndex],
+        isStar: index % 2 == 0 ? true : false,
       );
     });
     super.initState();
@@ -43,7 +53,7 @@ class _CustomerTableState extends State<CustomerTable> {
         key.currentContext?.findRenderObject() as RenderBox?;
     if (renderBox == null) return;
     final Offset offset = renderBox.localToGlobal(Offset.zero);
-    _openMoreTools(Offset(offset.dx - 10, offset.dy + renderBox.size.height));
+    _openMoreTools(Offset(offset.dx -20, offset.dy + renderBox.size.height));
   }
 
   void _openMoreTools(Offset offset) {
@@ -169,23 +179,31 @@ class _CustomerTableState extends State<CustomerTable> {
           child: Row(
             children: [
               Expanded(
-                flex: flex0,
+                flex: flexSelect,
+                child: CusTableTitle(text: '', showArrow: false),
+              ),
+              Expanded(
+                flex: flexId,
+                child: CusTableTitle(text: 'Invoice Id'),
+              ),
+              Expanded(
+                flex: flexName,
                 child: CusTableTitle(text: 'Name'),
               ),
               Expanded(
-                flex: flex1,
+                flex: flexEmail,
                 child: CusTableTitle(text: 'Email'),
               ),
               Expanded(
-                flex: flex2,
-                child: CusTableTitle(text: 'Phone Number'),
+                flex: flexDate,
+                child: CusTableTitle(text: 'Date'),
               ),
               Expanded(
-                flex: flex3,
-                child: CusTableTitle(text: 'Gender'),
+                flex: flexStatus,
+                child: CusTableTitle(text: 'Status', showArrow: false),
               ),
               Expanded(
-                flex: flex4,
+                flex: flexMoreTools,
                 child: CusTableTitle(text: '', showArrow: false),
               ),
             ],
@@ -197,12 +215,12 @@ class _CustomerTableState extends State<CustomerTable> {
               context,
             ).copyWith(scrollbars: false),
             child: ListView.separated(
-              itemCount: _customerList.length,
               separatorBuilder: (context, index) =>
                   SizedBox(height: AppConstrain.paddingSmall),
               padding: EdgeInsets.only(top: AppConstrain.paddingSmall),
+              itemCount: _invoiceList.length,
               itemBuilder: (context, index) {
-                final customer = _customerList[index];
+                final Invoice invoice = _invoiceList[index];
                 return AnimatedContainer(
                   duration: Duration(milliseconds: 250),
                   margin: EdgeInsets.symmetric(
@@ -212,7 +230,7 @@ class _CustomerTableState extends State<CustomerTable> {
                     vertical: _activeIndex == index
                         ? AppConstrain.paddingSmall * 1.3
                         : AppConstrain.paddingSmall,
-                    horizontal: AppConstrain.paddingSmall
+                    horizontal: AppConstrain.paddingSmall,
                   ),
                   decoration: BoxDecoration(
                     color: AppColors.primaryColor,
@@ -232,7 +250,52 @@ class _CustomerTableState extends State<CustomerTable> {
                     crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
                       Expanded(
-                        flex: flex0,
+                        flex: flexSelect,
+                        child: Center(
+                          child: GestureDetector(
+                            onTap: (){
+                              setState(() {
+                                _checkList[index]=!_checkList[index];
+                              });
+                            },
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 200),
+                              width: 14,
+                              height: 14,
+                              decoration: BoxDecoration(
+                                color: _checkList[index]
+                                    ? AppColors.secondColor
+                                    : Colors.transparent,
+                                borderRadius: BorderRadius.circular(4),
+                                border: Border.all(
+                                  color: _checkList[index]
+                                      ? AppColors.secondColor
+                                      : const Color(0xffD1D1D6),
+                                  width: 1.5,
+                                ),
+                              ),
+                              child: _checkList[index]
+                                  ? const Icon(
+                                      Icons.check,
+                                      size: 10,
+                                      color: Colors.white,
+                                    )
+                                  : null,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Expanded(
+                        flex: flexId,
+                        child: Text(
+                          invoice.id,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(fontSize: 11),
+                        ),
+                      ),
+                      Expanded(
+                        flex: flexName,
                         child: Row(
                           children: [
                             ClipOval(
@@ -241,82 +304,117 @@ class _CustomerTableState extends State<CustomerTable> {
                                 width: 30,
                               ),
                             ),
-                            SizedBox(width: AppConstrain.paddingSmall),
-                            Expanded(
-                              child: Text(
-                                customer.name,
-                                maxLines: 1,
-                                overflow: TextOverflow.ellipsis,
-                                style: const TextStyle(fontSize: 11),
-                              ),
+                            SizedBox(width: AppConstrain.paddingSmall / 2),
+                            Text(
+                              invoice.name,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 11),
                             ),
                           ],
                         ),
                       ),
                       Expanded(
-                        flex: flex1,
-                        child: Text(
-                          customer.email,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 11),
+                        flex: flexEmail,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.email_rounded,
+                              color: Color(0xff3A974C),
+                              size: 15,
+                            ),
+                            SizedBox(width: AppConstrain.paddingSmall / 2),
+                            Text(
+                              invoice.email,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 11),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
-                        flex: flex2,
-                        child: Text(
-                          customer.phone,
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(fontSize: 11),
+                        flex: flexDate,
+                        child: Row(
+                          children: [
+                            Icon(
+                              Icons.calendar_month_rounded,
+                              color: Color(0xff4285F4),
+                              size: 15,
+                            ),
+                            SizedBox(width: AppConstrain.paddingSmall / 2),
+                            Text(
+                              invoice.date,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              style: const TextStyle(fontSize: 11),
+                            ),
+                          ],
                         ),
                       ),
                       Expanded(
-                        flex: flex3,
-                        child: Align(
-                          alignment: Alignment.centerLeft,
+                        flex: flexStatus,
+                        child: Center(
                           child: Container(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 8,
-                              vertical: 2,
+                            width: 80,
+                            padding: EdgeInsets.all(
+                              AppConstrain.paddingSmall * 0.3,
                             ),
                             decoration: BoxDecoration(
-                              color: customer.gender == "Male"
-                                  ? const Color(0xffEFF4FF)
-                                  : const Color(0xffFCF1ED),
+                              color: invoice.status.backgroundColor,
                               borderRadius: BorderRadius.circular(
                                 AppConstrain.borderRadius,
                               ),
                             ),
-                            child: Text(
-                              customer.gender,
-                              style: TextStyle(
-                                color: customer.gender == "Male"
-                                    ? const Color(0xff5B93FF)
-                                    : const Color(0xffFD8E6B),
-                                fontSize: 11,
+                            child: Center(
+                              child: Text(
+                                invoice.status.label,
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                                style: TextStyle(
+                                  fontSize: 11,
+                                  color: invoice.status.textColor,
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
                       Expanded(
-                        flex: flex4,
+                        flex: flexMoreTools,
                         child: Align(
-                          alignment: Alignment.center,
-                          child: GestureDetector(
-                            onTap: () {
-                              setState(() => _activeIndex = index);
-                              _getMoreIconPosition(_keys[index]);
-                            },
-                            child: Icon(
-                              key: _keys[index],
-                              Icons.more_horiz_outlined,
-                              color: _activeIndex == index
-                                  ? AppColors.secondColor
-                                  : const Color(0xffB3B3BF),
-                              size: 18,
-                            ),
+                          alignment: AlignmentGeometry.center,
+                          child: Row(
+                            mainAxisSize: MainAxisSize.min,
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: Icon(
+                                  Icons.star_rounded,
+                                  size: 18,
+                                  color: invoice.isStar
+                                      ? Color(0xffFFD66B)
+                                      : Color(0xffE8E8EC),
+                                ),
+                              ),
+                              SizedBox(width: AppConstrain.paddingSmall),
+                              GestureDetector(
+                                key: _keys[index],
+                                onTap: () {
+                                  setState(() {
+                                    _activeIndex = index;
+                                  });
+                                  _getMoreIconPosition(_keys[index]);
+                                },
+                                child: Icon(
+                                  Icons.more_horiz_rounded,
+                                  size: 18,
+                                  color: _activeIndex == index
+                                      ? AppColors.secondColor
+                                      : Color(0xffE8E8EC),
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ),
