@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/presentation/analytics/analytics_page.dart';
+import 'package:saas_dashboard/presentation/calendar/calendar_page.dart';
 import 'package:saas_dashboard/presentation/dashboard/dashboard_page.dart';
 import 'package:saas_dashboard/presentation/home/component/home_navigation.dart';
 import 'package:saas_dashboard/presentation/invoice/invoice_page.dart';
+import 'package:saas_dashboard/presentation/message/message_page.dart';
 import 'package:saas_dashboard/presentation/schedule/schedule_page.dart';
 
 class HomePage extends StatefulWidget {
@@ -16,7 +18,14 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   int _activeIndex = 0;
-  final List<Widget> _pages = [DashboardPage(),AnalyticsPage(),InvoicePage(),SchedulePage()];
+  final List<Widget> _pages = [
+    DashboardPage(),
+    AnalyticsPage(),
+    InvoicePage(),
+    SchedulePage(),
+    CalendarPage(),
+    MessagePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +36,7 @@ class _HomePageState extends State<HomePage> {
           HomeNavigation(
             onChanged: (value) {
               setState(() {
-                _activeIndex=value;
+                _activeIndex = value;
               });
             },
           ),

@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+import 'package:saas_dashboard/entity/message/im_message.dart';
+import 'package:saas_dashboard/entity/message/im_session.dart';
 import 'package:saas_dashboard/entity/schedule/task.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 
@@ -91,5 +93,64 @@ List<Task> doneList = [
     commentNum: 112,
     likeNum: 154,
     image: Assets.images.taskImage.path,
+  ),
+];
+
+List<ImMessage> messageList = [
+  ImMessage(
+    isMe: false,
+    text:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    sendTime: "1 min ago",
+  ),
+  ImMessage(isMe: true, text: "Lorem Ipsum is simply ", sendTime: "9 min ago"),
+  ImMessage(
+    isMe: false,
+    text:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    sendTime: "15 min ago",
+  ),
+  ImMessage(
+    isMe: false,
+    text:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    sendTime: "21 min ago",
+  ),
+  ImMessage(
+    isMe: true,
+    text:
+        "Lorem Ipsum is simply dummy text of the printing and typesetting industry. ",
+    sendTime: "21 min ago",
+  ),
+];
+
+List<ImSession> sessionList = [
+  ImSession(
+    id: 0,
+    messageList[0],
+    name: "Shelby Goode",
+    avatar: Assets.images.avatar.path,
+    isActive: false,
+  ),
+  ImSession(
+    id: 1,
+    messageList[1],
+    name: "Shelby Goode",
+    avatar: Assets.images.avatar.path,
+    isActive: true,
+  ),
+  ImSession(
+    id: 2,
+    messageList[2],
+    name: "Shelby Goode",
+    avatar: Assets.images.avatar.path,
+    isActive: true,
+  ),
+  ImSession(
+    id: 3,
+    messageList[3],
+    name: "Shelby Goode",
+    avatar: Assets.images.avatar.path,
+    isActive: false,
   ),
 ];
