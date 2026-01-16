@@ -21,8 +21,6 @@ class _HomeNavigationState extends State<HomeNavigation> {
     HomeNavigationItem(icon: Assets.images.schedule, title: "Schedule"),
     HomeNavigationItem(icon: Assets.images.calendar, title: "Calendar"),
     HomeNavigationItem(icon: Assets.images.messages, title: "Messages"),
-    HomeNavigationItem(icon: Assets.images.notification, title: "Notification"),
-    HomeNavigationItem(icon: Assets.images.setting, title: "Settings"),
   ];
 
   bool _showLabel = true;

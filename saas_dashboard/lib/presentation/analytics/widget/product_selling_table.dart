@@ -2,40 +2,19 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
+import 'package:saas_dashboard/constant/app_data.dart';
 import 'package:saas_dashboard/entity/analytics/analytics_selling_product.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_table_title.dart';
 
-class ProductSellingTable extends StatefulWidget {
+class ProductSellingTable extends StatelessWidget {
   final double width;
   const ProductSellingTable({super.key, required this.width});
 
   @override
-  State<ProductSellingTable> createState() => _ProductSellingTableState();
-}
-
-class _ProductSellingTableState extends State<ProductSellingTable> {
-  late List<AnalyticsSellingProduct> _productList = [];
-
-  @override
-  void initState() {
-    _productList = List.generate(8, (index) {
-      return AnalyticsSellingProduct(
-        sn: index,
-        image: Assets.images.airdot.path,
-        name: "Airdot",
-        price: 15,
-        totalOrder: "20,000",
-        totalSales: "3,46,660",
-      );
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.65,
+      width: width * 0.65,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -77,8 +56,8 @@ class _ProductSellingTableState extends State<ProductSellingTable> {
                     CusTableTitle(text: 'Total Sales', showArrow: false),
                   ],
                 ),
-                ...List.generate(_productList.length, (index) {
-                  final AnalyticsSellingProduct product = _productList[index];
+                ...List.generate(productList.length, (index) {
+                  final AnalyticsSellingProduct product = productList[index];
                   return TableRow(
                     decoration: BoxDecoration(
                       color: index % 2 == 0 ? Color(0xffFAFAFB) : null,

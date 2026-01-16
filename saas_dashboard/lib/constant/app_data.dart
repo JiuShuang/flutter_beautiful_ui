@@ -1,6 +1,13 @@
+import 'dart:math';
 import 'dart:ui';
 
+import 'package:saas_dashboard/entity/analytics/analytics_selling_product.dart';
+import 'package:saas_dashboard/entity/analytics/customer.dart';
 import 'package:saas_dashboard/entity/calendar/calendar.dart';
+import 'package:saas_dashboard/entity/dashboard/recent_order.dart';
+import 'package:saas_dashboard/entity/dashboard/summary_data.dart';
+import 'package:saas_dashboard/entity/dashboard/top_selling_data.dart';
+import 'package:saas_dashboard/entity/invoice/invoice.dart';
 import 'package:saas_dashboard/entity/message/im_message.dart';
 import 'package:saas_dashboard/entity/message/im_session.dart';
 import 'package:saas_dashboard/entity/schedule/task.dart';
@@ -193,3 +200,115 @@ List<Calendar> calendarList = [
     lerver: CalendarLever.high,
   ),
 ];
+
+List<AnalyticsSellingProduct> productList = List.generate(8, (index) {
+  return AnalyticsSellingProduct(
+    sn: index,
+    image: Assets.images.airdot.path,
+    name: "Airdot",
+    price: 15,
+    totalOrder: "20,000",
+    totalSales: "3,46,660",
+  );
+});
+
+List<Customer> customerList = List.generate(10, (index) {
+  return Customer(
+    avatar: Assets.images.avatar.path,
+    name: "John Deo",
+    email: "johndoe2211@gmail.com",
+    phone: "+33757005467",
+    gender: index % 2 == 0 ? "Male" : "Female",
+  );
+});
+
+List<RecentOrder> ordersList = [
+  RecentOrder(
+    no: "#876364",
+    image: Assets.images.product,
+    name: "Camera Lens",
+    price: 178,
+    totalOrder: 325,
+    totalAmount: "1,46,660",
+  ),
+  RecentOrder(
+    no: "#876365",
+    image: Assets.images.product,
+    name: "Black Sleep Dress",
+    price: 14,
+    totalOrder: 53,
+    totalAmount: "2,416,660",
+  ),
+  RecentOrder(
+    no: "#876366",
+    image: Assets.images.product,
+    name: "Argan Oil",
+    price: 21,
+    totalOrder: 78,
+    totalAmount: "1,461,60",
+  ),
+  RecentOrder(
+    no: "#876367",
+    image: Assets.images.product,
+    name: "EAU DE Parfum",
+    price: 32,
+    totalOrder: 98,
+    totalAmount: "1,46,60",
+  ),
+];
+
+final List<SummaryData> summaryDataList = [
+  SummaryData(
+    icon: Assets.images.heart,
+    backgroundColor: Color(0xffEFF4FF),
+    number: "178+",
+    type: "Save Products",
+  ),
+  SummaryData(
+    icon: Assets.images.game,
+    backgroundColor: Color(0xffFFF7E1),
+    number: "20+",
+    type: "Stock Products",
+  ),
+  SummaryData(
+    icon: Assets.images.bag,
+    backgroundColor: Color(0xffFFF4F0),
+    number: "190+",
+    type: "Sales Products",
+  ),
+  SummaryData(
+    icon: Assets.images.work,
+    backgroundColor: Color(0xffEFEFFF),
+    number: "12+",
+    type: "Job Application",
+  ),
+];
+
+List<TopSellingProduct> topSellingProducts = [
+  TopSellingProduct(
+    image: Assets.images.iPhone12.path,
+    name: "iPhone12",
+    star: 4,
+    price: 987,
+  ),
+  TopSellingProduct(
+    image: Assets.images.iPhone12.path,
+    name: "iPhone12",
+    star: 4,
+    price: 987,
+  ),
+];
+
+List<Invoice> invoiceList = List.generate(10, (index) {
+  final List<InvoiceStatus> statusList = InvoiceStatus.values;
+  final randomIndex = Random().nextInt(statusList.length);
+  return Invoice(
+    id: "#${index}76364",
+    avatar: Assets.images.avatar.path,
+    name: "Arrora gaur",
+    email: "arroragaur@gmail.com",
+    date: "12 Dec, 2020",
+    status: statusList[randomIndex],
+    isStar: index % 2 == 0 ? true : false,
+  );
+});

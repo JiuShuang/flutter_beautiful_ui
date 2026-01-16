@@ -3,20 +3,11 @@ import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_pie_chart.dart';
 
-class DashboardAnalytics extends StatefulWidget {
+class DashboardAnalytics extends StatelessWidget {
   final double width;
   final double height;
-  const DashboardAnalytics({
-    super.key,
-    required this.width,
-    required this.height,
-  });
+  DashboardAnalytics({super.key, required this.width, required this.height});
 
-  @override
-  State<DashboardAnalytics> createState() => _DashboardAnalyticsState();
-}
-
-class _DashboardAnalyticsState extends State<DashboardAnalytics> {
   final List<PieData> _pieDataList = [
     PieData(color: Color(0xffF7FAFF), value: 20),
     PieData(color: Color(0xffFF8F6B), value: 25),
@@ -33,8 +24,8 @@ class _DashboardAnalyticsState extends State<DashboardAnalytics> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.38,
-      height: widget.height * 0.4,
+      width: width * 0.38,
+      height: height * 0.4,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -64,7 +55,7 @@ class _DashboardAnalyticsState extends State<DashboardAnalytics> {
                       constraints.maxHeight / 2,
                     ),
                     strokeWidth: 10,
-                    centerSPaceRadius: widget.height * 0.12,
+                    centerSPaceRadius: height * 0.12,
                     pieDataList: _pieDataList,
                     title: '80%',
                     subtitle: 'Transactions',

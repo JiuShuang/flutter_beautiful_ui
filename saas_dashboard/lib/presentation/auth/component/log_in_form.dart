@@ -6,15 +6,10 @@ import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/home/home_page.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_label_textfield.dart';
 
-class LogInForm extends StatefulWidget {
+class LogInForm extends StatelessWidget {
   final Function toSignUp;
   const LogInForm({super.key, required this.toSignUp});
 
-  @override
-  State<LogInForm> createState() => _LogInFormState();
-}
-
-class _LogInFormState extends State<LogInForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -137,7 +132,7 @@ class _LogInFormState extends State<LogInForm> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                   ),
-                  onPressed: () => widget.toSignUp(),
+                  onPressed: () => toSignUp(),
                   child: Text(
                     "New Account",
                     style: TextStyle(

@@ -13,13 +13,12 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
-  final List<String> _viewType = ["List", "Board", "Timeline"];
-  final List<Widget> _views = [
-    ScheduleListView(),
-    ScheduleBoardView(),
-    ScheduleTimelineView(),
-  ];
-  int _activeIndex = 0;
+  final Map<String, Widget> _views = {
+    "List": ScheduleListView(),
+    "Board": ScheduleBoardView(),
+    "Timeline": ScheduleTimelineView(),
+  };
+  String _activeView = "List";
 
   @override
   Widget build(BuildContext context) {
@@ -47,68 +46,58 @@ class _SchedulePageState extends State<SchedulePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    color: AppColors.primaryColor,
-                    borderRadius: BorderRadius.circular(
-                      AppConstrain.borderRadius / 2,
-                    ),
-                  ),
-                  child: Row(
-                    children: List.generate(_viewType.length, (index) {
-                      final bool isActive = _activeIndex == index;
-                      late BorderRadius borderRadius;
-                      if (index == 0) {
-                        borderRadius = BorderRadius.only(
-                          topLeft: Radius.circular(
-                            AppConstrain.borderRadius / 2,
-                          ),
-                          bottomLeft: Radius.circular(
-                            AppConstrain.borderRadius / 2,
-                          ),
-                        );
-                      } else if (index == _viewType.length - 1) {
-                        borderRadius = BorderRadius.only(
-                          topRight: Radius.circular(
-                            AppConstrain.borderRadius / 2,
-                          ),
-                          bottomRight: Radius.circular(
-                            AppConstrain.borderRadius / 2,
-                          ),
-                        );
-                      } else {
-                        borderRadius = BorderRadius.zero;
-                      }
-                      return GestureDetector(
-                        onTap: () {
-                          setState(() {
-                            _activeIndex = index;
-                          });
-                        },
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: AppConstrain.paddingSmall,
-                            vertical: AppConstrain.paddingSmall / 2,
-                          ),
-                          decoration: BoxDecoration(
-                            color: isActive
-                                ? AppColors.secondColor
-                                : AppColors.primaryColor,
-                            borderRadius: borderRadius,
-                          ),
-                          child: Text(
-                            _viewType[index],
-                            style: TextStyle(
-                              fontSize: 11,
-                              color: isActive
-                                  ? AppColors.primaryColor
-                                  : Colors.black,
-                            ),
-                          ),
+                Row(
+                  children: _views.keys.map((value) {
+                    late BorderRadius borderRadius;
+                    if (value == "List") {
+                      borderRadius = BorderRadius.only(
+                        topLeft: Radius.circular(AppConstrain.borderRadius / 2),
+                        bottomLeft: Radius.circular(
+                          AppConstrain.borderRadius / 2,
                         ),
                       );
-                    }),
-                  ),
+                    } else if (value == "Timeline") {
+                      borderRadius = BorderRadius.only(
+                        topRight: Radius.circular(
+                          AppConstrain.borderRadius / 2,
+                        ),
+                        bottomRight: Radius.circular(
+                          AppConstrain.borderRadius / 2,
+                        ),
+                      );
+                    } else {
+                      borderRadius = BorderRadius.zero;
+                    }
+
+                    return GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          _activeView = value;
+                        });
+                      },
+                      child: Container(
+                        padding: EdgeInsets.symmetric(
+                          vertical: AppConstrain.paddingSmall / 2,
+                          horizontal: AppConstrain.paddingMedium,
+                        ),
+                        decoration: BoxDecoration(
+                          color: _activeView == value
+                              ? AppColors.secondColor
+                              : AppColors.primaryColor,
+                          borderRadius: borderRadius,
+                        ),
+                        child: Text(
+                          value,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: _activeView == value
+                                ? AppColors.primaryColor
+                                : Colors.black,
+                          ),
+                        ),
+                      ),
+                    );
+                  }).toList(),
                 ),
                 SizedBox(
                   width: width * 0.2,
@@ -116,19 +105,15 @@ class _SchedulePageState extends State<SchedulePage> {
                     style: TextStyle(fontSize: 11),
                     decoration: InputDecoration(
                       hintText: "Search",
-                      hintStyle: TextStyle(
-                        fontSize: 11,
-                        color: Color(0xff818094),
-                      ),
+                      hintStyle: TextStyle(fontSize: 11),
                       fillColor: AppColors.primaryColor,
-                      filled: true,
                     ),
                   ),
                 ),
               ],
             ),
             SizedBox(height: AppConstrain.paddingSmall),
-            Expanded(child: _views[_activeIndex]),
+            Expanded(child: _views[_activeView] ?? SizedBox.shrink()),
           ],
         );
       },

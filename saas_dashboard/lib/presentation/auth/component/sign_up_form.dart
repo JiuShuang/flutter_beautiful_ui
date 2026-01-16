@@ -5,15 +5,10 @@ import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_label_textfield.dart';
 
-class SignUpForm extends StatefulWidget {
+class SignUpForm extends StatelessWidget {
   final Function toLogIn;
   const SignUpForm({super.key, required this.toLogIn});
 
-  @override
-  State<SignUpForm> createState() => _SignUpFormState();
-}
-
-class _SignUpFormState extends State<SignUpForm> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -131,7 +126,7 @@ class _SignUpFormState extends State<SignUpForm> {
               borderRadius: BorderRadius.circular(AppConstrain.borderRadius),
             ),
           ),
-          onPressed: () => widget.toLogIn(),
+          onPressed: () => toLogIn(),
           child: Text(
             "Create Account",
             style: TextStyle(
@@ -153,7 +148,7 @@ class _SignUpFormState extends State<SignUpForm> {
                   style: TextButton.styleFrom(
                     backgroundColor: Colors.transparent,
                   ),
-                  onPressed: () => widget.toLogIn(),
+                  onPressed: () => toLogIn(),
                   child: Text(
                     "Log In",
                     style: TextStyle(

@@ -3,20 +3,15 @@ import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_pie_chart.dart';
 
-class ProductSalesPieChart extends StatefulWidget {
+class ProductSalesPieChart extends StatelessWidget {
   final double width;
   final double height;
-  const ProductSalesPieChart({
+  ProductSalesPieChart({
     super.key,
     required this.width,
     required this.height,
   });
 
-  @override
-  State<ProductSalesPieChart> createState() => _ProductSalesPieChartState();
-}
-
-class _ProductSalesPieChartState extends State<ProductSalesPieChart> {
   final List<PieData> _pieDataList = [
     PieData(color: Color(0xffF7FAFF), value: 20),
     PieData(color: Color(0xffFF8F6B), value: 25),
@@ -33,8 +28,8 @@ class _ProductSalesPieChartState extends State<ProductSalesPieChart> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.33,
-      height: widget.height * 0.4,
+      width: width * 0.33,
+      height: height * 0.4,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -69,7 +64,7 @@ class _ProductSalesPieChartState extends State<ProductSalesPieChart> {
                           constraints.maxHeight / 2,
                         ),
                         strokeWidth: 10,
-                        centerSPaceRadius: widget.height * 0.12,
+                        centerSPaceRadius: height * 0.12,
                         pieDataList: _pieDataList,
                       ),
                     ),

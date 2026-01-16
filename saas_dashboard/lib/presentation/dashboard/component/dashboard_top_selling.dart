@@ -1,39 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
+import 'package:saas_dashboard/constant/app_data.dart';
 import 'package:saas_dashboard/entity/dashboard/top_selling_data.dart';
-import 'package:saas_dashboard/gen/assets.gen.dart';
 
-
-class DashboardTopSelling extends StatefulWidget {
+class DashboardTopSelling extends StatelessWidget {
   final double width;
   final double height;
-  const DashboardTopSelling({super.key, required this.width, required this.height});
-
-  @override
-  State<DashboardTopSelling> createState() => _DashboardTopSellingState();
-}
-
-class _DashboardTopSellingState extends State<DashboardTopSelling> {
-  final List<TopSellingProduct> _topSellingProducts = [
-    TopSellingProduct(
-      image: Assets.images.iPhone12.path,
-      name: "iPhone12",
-      star: 4,
-      price: 987,
-    ),
-    TopSellingProduct(
-      image: Assets.images.iPhone12.path,
-      name: "iPhone12",
-      star: 4,
-      price: 987,
-    ),
-  ];
+  const DashboardTopSelling({
+    super.key,
+    required this.width,
+    required this.height,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.38,
+      width: width * 0.38,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -56,15 +39,15 @@ class _DashboardTopSellingState extends State<DashboardTopSelling> {
             ],
           ),
           SizedBox(height: AppConstrain.paddingLarge),
-          ...List.generate(_topSellingProducts.length, (index) {
-            TopSellingProduct sellingProduct = _topSellingProducts[index];
+          ...List.generate(topSellingProducts.length, (index) {
+            TopSellingProduct sellingProduct = topSellingProducts[index];
             return Column(
               children: [
                 Row(
                   children: [
                     Container(
-                      width: widget.height * 0.11,
-                      height: widget.height * 0.11,
+                      width: height * 0.11,
+                      height: height * 0.11,
                       margin: EdgeInsets.only(right: AppConstrain.paddingSmall),
                       padding: EdgeInsets.all(AppConstrain.paddingSmall / 2),
                       decoration: BoxDecoration(
@@ -106,7 +89,7 @@ class _DashboardTopSellingState extends State<DashboardTopSelling> {
                     ),
                   ],
                 ),
-                if (index < _topSellingProducts.length - 1)
+                if (index < topSellingProducts.length - 1)
                   Divider(color: Color(0xffF2F2F4)),
               ],
             );

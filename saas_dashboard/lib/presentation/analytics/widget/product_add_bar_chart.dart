@@ -5,27 +5,55 @@ import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 
-class ProductAddBarChart extends StatefulWidget {
+class ProductAddBarChart extends StatelessWidget {
   final double width;
   final double height;
-  const ProductAddBarChart({
-    super.key,
-    required this.width,
-    required this.height,
-  });
+  ProductAddBarChart({super.key, required this.width, required this.height});
 
-  @override
-  State<ProductAddBarChart> createState() => _ProductAddBarChartState();
-}
-
-class _ProductAddBarChartState extends State<ProductAddBarChart> {
   final Random _random = Random();
+
+  BarTouchData get barTouchData => BarTouchData(
+    enabled: true,
+    touchTooltipData: BarTouchTooltipData(
+      getTooltipColor: (group) => Colors.transparent,
+      tooltipPadding: const EdgeInsets.only(left: -20.0),
+      getTooltipItem:
+          (
+            BarChartGroupData group,
+            int groupIndex,
+            BarChartRodData rod,
+            int rodIndex,
+          ) {
+            return BarTooltipItem(
+              rod.toY.round().toString(),
+              const TextStyle(color: Colors.black, fontSize: 11),
+            );
+          },
+    ),
+  );
+
+  List<BarChartGroupData> get barGroups => List.generate(7, (index) {
+    return BarChartGroupData(
+      x: index,
+      showingTooltipIndicators: [0],
+      barRods: [
+        BarChartRodData(
+          toY: _random.nextInt(21).toInt() + 1,
+          color: index % 2 == 0 ? Color(0xffFF8F6B) : Color(0xff5B93FF),
+          borderRadius: BorderRadius.only(
+            topRight: Radius.circular(10),
+            topLeft: Radius.circular(10),
+          ),
+        ),
+      ],
+    );
+  });
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.33,
-      height: widget.height * 0.4,
+      width: width * 0.33,
+      height: height * 0.4,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -37,7 +65,7 @@ class _ProductAddBarChartState extends State<ProductAddBarChart> {
           Text("Product Add by Month", style: TextTheme.of(context).bodyMedium),
           Expanded(
             child: SizedBox(
-              width: widget.width * 0.25,
+              width: width * 0.25,
               child: BarChart(
                 BarChartData(
                   rotationQuarterTurns: 1,
@@ -85,41 +113,4 @@ class _ProductAddBarChartState extends State<ProductAddBarChart> {
       child: Text(text, style: style),
     );
   }
-
-  BarTouchData get barTouchData => BarTouchData(
-    enabled: true,
-    touchTooltipData: BarTouchTooltipData(
-      getTooltipColor: (group) => Colors.transparent,
-      tooltipPadding: const EdgeInsets.only(left: -20.0),
-      getTooltipItem:
-          (
-            BarChartGroupData group,
-            int groupIndex,
-            BarChartRodData rod,
-            int rodIndex,
-          ) {
-            return BarTooltipItem(
-              rod.toY.round().toString(),
-              const TextStyle(color: Colors.black, fontSize: 11),
-            );
-          },
-    ),
-  );
-
-  List<BarChartGroupData> get barGroups => List.generate(7, (index) {
-    return BarChartGroupData(
-      x: index,
-      showingTooltipIndicators: [0],
-      barRods: [
-        BarChartRodData(
-          toY: _random.nextInt(21).toInt() + 1,
-          color: index % 2 == 0 ? Color(0xffFF8F6B) : Color(0xff5B93FF),
-          borderRadius: BorderRadius.only(
-            topRight: Radius.circular(10),
-            topLeft: Radius.circular(10),
-          ),
-        ),
-      ],
-    );
-  });
 }

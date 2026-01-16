@@ -5,7 +5,7 @@ import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 
-class ProductTotalLineChart extends StatefulWidget {
+class ProductTotalLineChart extends StatelessWidget {
   final double width;
   final double height;
   const ProductTotalLineChart({
@@ -14,107 +14,93 @@ class ProductTotalLineChart extends StatefulWidget {
     required this.height,
   });
 
-  @override
-  State<ProductTotalLineChart> createState() =>
-      _ProductTotalLineChartState();
-}
-
-class _ProductTotalLineChartState extends State<ProductTotalLineChart> {
-  LineChartData totalProductData() {
-    return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
-      gridData: FlGridData(show: false),
-      titlesData: FlTitlesData(
-        show: true,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-      ),
-      borderData: FlBorderData(show: false),
-      minX: 1,
-      maxX: 8,
-      minY: 0,
-      maxY: 100,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(1, 85),
-            FlSpot(2, 45),
-            FlSpot(3, 95),
-            FlSpot(4, 30),
-            FlSpot(5, 70),
-            FlSpot(6, 15),
-            FlSpot(7, 88),
-            FlSpot(8, 55),
-          ],
-          isCurved: true,
-          color: Color(0xff5B93FF),
-          isStrokeCapRound: true,
-          barWidth: 3,
-          dotData: const FlDotData(show: false),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              begin: AlignmentGeometry.topCenter,
-              end: AlignmentGeometry.bottomCenter,
-              colors: [Color(0xffE3EDFF), Color(0xffE3EDFF).withAlpha(50)],
-            ),
+  LineChartData get totalProductData => LineChartData(
+    lineTouchData: LineTouchData(enabled: false),
+    gridData: FlGridData(show: false),
+    titlesData: FlTitlesData(
+      show: true,
+      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    ),
+    borderData: FlBorderData(show: false),
+    minX: 1,
+    maxX: 8,
+    minY: 0,
+    maxY: 100,
+    lineBarsData: [
+      LineChartBarData(
+        spots: const [
+          FlSpot(1, 85),
+          FlSpot(2, 45),
+          FlSpot(3, 95),
+          FlSpot(4, 30),
+          FlSpot(5, 70),
+          FlSpot(6, 15),
+          FlSpot(7, 88),
+          FlSpot(8, 55),
+        ],
+        isCurved: true,
+        color: Color(0xff5B93FF),
+        isStrokeCapRound: true,
+        barWidth: 3,
+        dotData: const FlDotData(show: false),
+        belowBarData: BarAreaData(
+          show: true,
+          gradient: LinearGradient(
+            begin: AlignmentGeometry.topCenter,
+            end: AlignmentGeometry.bottomCenter,
+            colors: [Color(0xffE3EDFF), Color(0xffE3EDFF).withAlpha(50)],
           ),
         ),
-      ],
-    );
-  }
-
-  LineChartData totalSalesData() {
-    return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
-      gridData: FlGridData(show: false),
-      titlesData: FlTitlesData(
-        show: true,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
       ),
-      borderData: FlBorderData(show: false),
-      minX: 1,
-      maxX: 8,
-      minY: 0,
-      maxY: 100,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(1, 60),
-            FlSpot(2, 45),
-            FlSpot(3, 95),
-            FlSpot(4, 30),
-            FlSpot(5, 70),
-            FlSpot(6, 15),
-            FlSpot(7, 88),
-            FlSpot(8, 90),
-          ],
-          isCurved: true,
-          color: Color(0xffFFD66B),
-          isStrokeCapRound: true,
-          barWidth: 3,
-          dotData: const FlDotData(show: false),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              begin: AlignmentGeometry.topCenter,
-              end: AlignmentGeometry.bottomCenter,
-              colors: [Color(0xffFFFAEE), Color(0xffFFFAEE).withAlpha(50)],
-            ),
+    ],
+  );
+
+  LineChartData get totalSalesData => LineChartData(
+    lineTouchData: LineTouchData(enabled: false),
+    gridData: FlGridData(show: false),
+    titlesData: FlTitlesData(
+      show: true,
+      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+    ),
+    borderData: FlBorderData(show: false),
+    minX: 1,
+    maxX: 8,
+    minY: 0,
+    maxY: 100,
+    lineBarsData: [
+      LineChartBarData(
+        spots: const [
+          FlSpot(1, 60),
+          FlSpot(2, 45),
+          FlSpot(3, 95),
+          FlSpot(4, 30),
+          FlSpot(5, 70),
+          FlSpot(6, 15),
+          FlSpot(7, 88),
+          FlSpot(8, 90),
+        ],
+        isCurved: true,
+        color: Color(0xffFFD66B),
+        isStrokeCapRound: true,
+        barWidth: 3,
+        dotData: const FlDotData(show: false),
+        belowBarData: BarAreaData(
+          show: true,
+          gradient: LinearGradient(
+            begin: AlignmentGeometry.topCenter,
+            end: AlignmentGeometry.bottomCenter,
+            colors: [Color(0xffFFFAEE), Color(0xffFFFAEE).withAlpha(50)],
           ),
         ),
-      ],
-    );
-  }
+      ),
+    ],
+  );
 
   @override
   Widget build(BuildContext context) {
@@ -122,8 +108,8 @@ class _ProductTotalLineChartState extends State<ProductTotalLineChart> {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Container(
-          width: widget.width * 0.31,
-          height: widget.height * 0.2,
+          width: width * 0.31,
+          height: height * 0.2,
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(AppConstrain.borderRadius),
@@ -172,13 +158,13 @@ class _ProductTotalLineChartState extends State<ProductTotalLineChart> {
                   ],
                 ),
               ),
-              Expanded(child: LineChart(totalProductData())),
+              Expanded(child: LineChart(totalProductData)),
             ],
           ),
         ),
         Container(
-          width: widget.width * 0.31,
-          height: widget.height * 0.2,
+          width: width * 0.31,
+          height: height * 0.2,
           decoration: BoxDecoration(
             color: AppColors.primaryColor,
             borderRadius: BorderRadius.circular(AppConstrain.borderRadius),
@@ -227,7 +213,7 @@ class _ProductTotalLineChartState extends State<ProductTotalLineChart> {
                   ],
                 ),
               ),
-              Expanded(child: LineChart(totalSalesData())),
+              Expanded(child: LineChart(totalSalesData)),
             ],
           ),
         ),

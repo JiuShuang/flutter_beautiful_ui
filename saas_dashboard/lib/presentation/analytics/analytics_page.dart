@@ -13,7 +13,7 @@ class AnalyticsPage extends StatefulWidget {
 
 class _AnalyticsPageState extends State<AnalyticsPage> {
   int _activeLabelIndex = 0;
-  List<String> _label = ["Product", "Customer"];
+  final List<String> _label = ["Product", "Customer"];
 
   @override
   Widget build(BuildContext context) {

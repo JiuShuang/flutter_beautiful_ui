@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
 
-class DashboardReports extends StatefulWidget {
+class DashboardReports extends StatelessWidget {
   final double width;
   final double height;
   const DashboardReports({
@@ -12,16 +12,80 @@ class DashboardReports extends StatefulWidget {
     required this.height,
   });
 
-  @override
-  State<DashboardReports> createState() => _DashboardReportsState();
-}
+  LineChartData get reportData => LineChartData(
+    lineTouchData: LineTouchData(enabled: false),
+    gridData: FlGridData(
+      show: true,
+      drawVerticalLine: false,
+      drawHorizontalLine: true,
+      horizontalInterval: 20,
+      getDrawingHorizontalLine: (value) {
+        return FlLine(
+          color: value % 20 == 0 ? Color(0xff848396) : Colors.transparent,
+          strokeWidth: 0.1,
+        );
+      },
+    ),
+    titlesData: FlTitlesData(
+      show: true,
+      rightTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
+      bottomTitles: AxisTitles(
+        sideTitles: SideTitles(
+          showTitles: true,
+          interval: 1,
+          getTitlesWidget: bottomTitleWidgets,
+        ),
+      ),
+      leftTitles: AxisTitles(
+        sideTitles: SideTitles(
+          showTitles: true,
+          interval: 20,
+          getTitlesWidget: leftTimeTitleWidgets,
+          reservedSize: 23,
+        ),
+      ),
+    ),
+    borderData: FlBorderData(show: false),
+    minX: 0,
+    maxX: 8,
+    minY: 0,
+    maxY: 100,
+    lineBarsData: [
+      LineChartBarData(
+        spots: const [
+          FlSpot(0, 10),
+          FlSpot(1, 85),
+          FlSpot(2, 45),
+          FlSpot(3, 95),
+          FlSpot(4, 30),
+          FlSpot(5, 70),
+          FlSpot(6, 15),
+          FlSpot(7, 88),
+          FlSpot(8, 55),
+        ],
+        isCurved: true,
+        gradient: LinearGradient(
+          colors: [Color(0xff80C6FC), Color(0xff9E99F8), Color(0xffE46EF2)],
+        ),
+        isStrokeCapRound: true,
+        barWidth: 3,
+        dotData: const FlDotData(show: false),
+        belowBarData: BarAreaData(
+          show: true,
+          gradient: LinearGradient(
+            colors: [Color(0xffF9FDFF), Color(0xffFFF9FE)],
+          ),
+        ),
+      ),
+    ],
+  );
 
-class _DashboardReportsState extends State<DashboardReports> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.6,
-      height: widget.height * 0.4,
+      width: width * 0.6,
+      height: height * 0.4,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -34,84 +98,11 @@ class _DashboardReportsState extends State<DashboardReports> {
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(8.0),
-              child: LineChart(mainData()),
+              child: LineChart(reportData),
             ),
           ),
         ],
       ),
-    );
-  }
-
-  LineChartData mainData() {
-    return LineChartData(
-      lineTouchData: LineTouchData(enabled: false),
-      gridData: FlGridData(
-        show: true,
-        drawVerticalLine: false,
-        drawHorizontalLine: true,
-        horizontalInterval: 20,
-        getDrawingHorizontalLine: (value) {
-          return FlLine(
-            color: value % 20 == 0 ? Color(0xff848396) : Colors.transparent,
-            strokeWidth: 0.1,
-          );
-        },
-      ),
-      titlesData: FlTitlesData(
-        show: true,
-        rightTitles: const AxisTitles(
-          sideTitles: SideTitles(showTitles: false),
-        ),
-        topTitles: const AxisTitles(sideTitles: SideTitles(showTitles: false)),
-        bottomTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            interval: 1,
-            getTitlesWidget: bottomTitleWidgets,
-          ),
-        ),
-        leftTitles: AxisTitles(
-          sideTitles: SideTitles(
-            showTitles: true,
-            interval: 20,
-            getTitlesWidget: leftTimeTitleWidgets,
-            reservedSize: 23,
-          ),
-        ),
-      ),
-      borderData: FlBorderData(show: false),
-      minX: 0,
-      maxX: 8,
-      minY: 0,
-      maxY: 100,
-      lineBarsData: [
-        LineChartBarData(
-          spots: const [
-            FlSpot(0, 10),
-            FlSpot(1, 85),
-            FlSpot(2, 45),
-            FlSpot(3, 95),
-            FlSpot(4, 30),
-            FlSpot(5, 70),
-            FlSpot(6, 15),
-            FlSpot(7, 88),
-            FlSpot(8, 55),
-          ],
-          isCurved: true,
-          gradient: LinearGradient(
-            colors: [Color(0xff80C6FC), Color(0xff9E99F8), Color(0xffE46EF2)],
-          ),
-          isStrokeCapRound: true,
-          barWidth: 3,
-          dotData: const FlDotData(show: false),
-          belowBarData: BarAreaData(
-            show: true,
-            gradient: LinearGradient(
-              colors: [Color(0xffF9FDFF), Color(0xffFFF9FE)],
-            ),
-          ),
-        ),
-      ],
     );
   }
 

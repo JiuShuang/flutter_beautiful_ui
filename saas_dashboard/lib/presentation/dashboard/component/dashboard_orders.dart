@@ -1,58 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:saas_dashboard/constant/app_colors.dart';
 import 'package:saas_dashboard/constant/app_constrain.dart';
-import 'package:saas_dashboard/entity/dashboard/recent_order.dart';
+import 'package:saas_dashboard/constant/app_data.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_table_title.dart';
 
-class DashboardOrders extends StatefulWidget {
+class DashboardOrders extends StatelessWidget {
   final double width;
   const DashboardOrders({super.key, required this.width});
 
   @override
-  State<DashboardOrders> createState() => _DashboardOrdersState();
-}
-
-class _DashboardOrdersState extends State<DashboardOrders> {
-  final List<RecentOrder> _ordersList = [
-    RecentOrder(
-      no: "#876364",
-      image: Assets.images.product,
-      name: "Camera Lens",
-      price: 178,
-      totalOrder: 325,
-      totalAmount: "1,46,660",
-    ),
-    RecentOrder(
-      no: "#876365",
-      image: Assets.images.product,
-      name: "Black Sleep Dress",
-      price: 14,
-      totalOrder: 53,
-      totalAmount: "2,416,660",
-    ),
-    RecentOrder(
-      no: "#876366",
-      image: Assets.images.product,
-      name: "Argan Oil",
-      price: 21,
-      totalOrder: 78,
-      totalAmount: "1,461,60",
-    ),
-    RecentOrder(
-      no: "#876367",
-      image: Assets.images.product,
-      name: "EAU DE Parfum",
-      price: 32,
-      totalOrder: 98,
-      totalAmount: "1,46,60",
-    ),
-  ];
-
-  @override
   Widget build(BuildContext context) {
     return Container(
-      width: widget.width * 0.6,
+      width: width * 0.6,
       padding: EdgeInsets.all(AppConstrain.paddingSmall),
       decoration: BoxDecoration(
         color: AppColors.primaryColor,
@@ -97,7 +57,7 @@ class _DashboardOrdersState extends State<DashboardOrders> {
                     CusTableTitle(text: 'Total Amount', showArrow: false),
                   ],
                 ),
-                ..._ordersList.map((order) {
+                ...ordersList.map((order) {
                   return TableRow(
                     children: <Widget>[
                       TableCell(
