@@ -26,7 +26,7 @@ class TaskBoardLine extends StatelessWidget {
         SizedBox(height: AppConstrain.paddingMedium),
         ...taskList.map((task) {
           return Container(
-            width: width-AppConstrain.paddingMedium,
+            width: width - AppConstrain.paddingMedium,
             padding: EdgeInsets.all(AppConstrain.paddingSmall),
             margin: EdgeInsets.only(bottom: AppConstrain.paddingMedium),
             decoration: BoxDecoration(

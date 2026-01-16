@@ -6,9 +6,9 @@ import 'package:saas_dashboard/presentation/widgets/cus_checkbox.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_table_title.dart';
 
 class TaskListCard extends StatelessWidget {
-  final List<Task> tasList;
+  final List<Task> taskList;
   final String title;
-  const TaskListCard({super.key, required this.tasList, required this.title});
+  const TaskListCard({super.key, required this.taskList, required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -46,8 +46,8 @@ class TaskListCard extends StatelessWidget {
               Expanded(child: CusTableTitle(text: "Actions", showArrow: false)),
             ],
           ),
-          ...List.generate(tasList.length, (index) {
-            final Task task = tasList[index];
+          ...List.generate(taskList.length, (index) {
+            final Task task = taskList[index];
             return Container(
               padding: EdgeInsets.symmetric(
                 vertical: AppConstrain.paddingSmall / 2,

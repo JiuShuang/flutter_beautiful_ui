@@ -1,5 +1,6 @@
 import 'dart:ui';
 
+import 'package:saas_dashboard/entity/calendar/calendar.dart';
 import 'package:saas_dashboard/entity/message/im_message.dart';
 import 'package:saas_dashboard/entity/message/im_session.dart';
 import 'package:saas_dashboard/entity/schedule/task.dart';
@@ -152,5 +153,43 @@ List<ImSession> sessionList = [
     name: "Shelby Goode",
     avatar: Assets.images.avatar.path,
     isActive: false,
+  ),
+];
+
+List<Calendar> calendarList = [
+  Calendar(
+    title: "Free Day",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 16, 6),
+    lerver: CalendarLever.media,
+  ),
+  Calendar(
+    title: "Tecent Meeting",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 16, 2),
+    lerver: CalendarLever.high,
+  ),
+  Calendar(
+    title: "Tecent Meeting",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 16, 4),
+    lerver: CalendarLever.low,
+  ),
+  Calendar(
+    title: "Part Time",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 2, 3),
+    lerver: CalendarLever.low,
+  ),
+  Calendar(
+    title: "Invited By Friends",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 23, 4),
+    lerver: CalendarLever.media,
+  ),
+  Calendar(
+    title: "Christmas Day",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 12, 5),
+    lerver: CalendarLever.high,
+  ),
+  Calendar(
+    title: "Victory Day",
+    time: DateTime(DateTime.now().year, DateTime.now().month, 8, 6),
+    lerver: CalendarLever.high,
   ),
 ];

@@ -4,6 +4,7 @@ import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/entity/schedule/task.dart';
 import 'package:saas_dashboard/gen/assets.gen.dart';
 import 'package:saas_dashboard/presentation/widgets/cus_checkbox.dart';
+import 'package:saas_dashboard/presentation/widgets/cus_timeline.dart';
 
 class TaskTimeline extends StatefulWidget {
   final double width;
@@ -110,7 +111,7 @@ class _TaskTimelineState extends State<TaskTimeline>
               child: SingleChildScrollView(
                 child: Stack(
                   children: [
-                    TimeLineLayout(),
+                    CusTimeline(),
                     ...List.generate(widget.taskList.length, (index) {
                       final Task task = widget.taskList[index];
                       final Animation animation = CurvedAnimation(
@@ -122,7 +123,7 @@ class _TaskTimelineState extends State<TaskTimeline>
                       );
                       return Positioned(
                         left: AppConstrain.paddingLarge * 3 * (1 + index),
-                        top: AppConstrain.paddingLarge * 3 * index,
+                        top: 55.0 * index,
                         child: AnimatedBuilder(
                           animation: animation,
                           builder: (context, child) {
@@ -135,7 +136,8 @@ class _TaskTimelineState extends State<TaskTimeline>
                             );
                           },
                           child: Container(
-                            padding: EdgeInsets.all(AppConstrain.paddingMedium),
+                            padding: EdgeInsets.all(AppConstrain.paddingSmall),
+                            height: 50,
                             width: widget.width * 0.6,
                             decoration: BoxDecoration(
                               color: AppColors.primaryColor,
@@ -236,43 +238,6 @@ class _TaskTimelineState extends State<TaskTimeline>
           ),
         ],
       ),
-    );
-  }
-}
-
-class TimeLineLayout extends StatelessWidget {
-  const TimeLineLayout({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Column(
-          children: List.generate(24, (index) {
-            String hourString = index.toString().padLeft(2, '0');
-            String period = index < 12 ? "am" : "pm";
-            return Padding(
-              padding: EdgeInsets.only(bottom: AppConstrain.paddingLarge * 2),
-              child: Text(
-                "$hourString:00 $period",
-                style: const TextStyle(fontSize: 10, color: Color(0xff68677F)),
-              ),
-            );
-          }),
-        ),
-        Expanded(
-          child: Column(
-            children: List.generate(23, (index) {
-              return Padding(
-                padding: EdgeInsets.only(
-                  bottom: AppConstrain.paddingLarge * 1.91,
-                ),
-                child: Divider(color: Color(0xffF2F2F4)),
-              );
-            }),
-          ),
-        ),
-      ],
     );
   }
 }

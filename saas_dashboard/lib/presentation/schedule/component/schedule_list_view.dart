@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:saas_dashboard/constant/app_constrain.dart';
 import 'package:saas_dashboard/constant/app_data.dart';
 import 'package:saas_dashboard/entity/schedule/task.dart';
 import 'package:saas_dashboard/presentation/schedule/widget/task_list_card.dart';
@@ -39,35 +38,29 @@ class _ScheduleListViewState extends State<ScheduleListView>
 
   @override
   Widget build(BuildContext context) {
-    return ScrollConfiguration(
-      behavior: ScrollConfiguration.of(context).copyWith(scrollbars: false),
-      child: SingleChildScrollView(
-        child: Column(
-          children: List.generate(_taskMap.length, (index) {
-            final String key = _taskMap.keys.elementAt(index);
-            final List<Task> taskList = _taskMap[key]!;
-            final Animation animation = CurvedAnimation(
-              parent: _controller,
-              curve: Interval(
-                1 / _taskMap.length * index,
-                1 / _taskMap.length * (1 + index),
-              ),
-            );
-            return AnimatedBuilder(
-              animation: animation,
-              builder: (context, child) {
-                return Transform.translate(
-                  offset: Offset(0, 20.0 * (1 - animation.value)),
-                  child: Opacity(opacity: animation.value, child: child),
-                );
-              },
-              child: Padding(
-                padding: EdgeInsets.only(bottom: AppConstrain.paddingMedium),
-                child: TaskListCard(tasList: taskList, title: key),
-              ),
-            );
-          }),
-        ),
+    return SingleChildScrollView(
+      child: Column(
+        children: List.generate(_taskMap.length, (index) {
+          final String key = _taskMap.keys.elementAt(index);
+          final List<Task> taskList = _taskMap[key]!;
+          final Animation animation = CurvedAnimation(
+            parent: _controller,
+            curve: Interval(
+              1 / _taskMap.length * index,
+              1 / _taskMap.length * (1 + index),
+            ),
+          );
+          return AnimatedBuilder(
+            animation: animation,
+            builder: (context, child) {
+              return Transform.translate(
+                offset: Offset(0, 20.0 * (1 - animation.value)),
+                child: Opacity(opacity: animation.value, child: child),
+              );
+            },
+            child: TaskListCard(taskList: taskList, title: key),
+          );
+        }),
       ),
     );
   }
