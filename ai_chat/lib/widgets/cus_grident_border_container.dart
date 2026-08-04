@@ -11,6 +11,7 @@ class CusGridentBorderContainer extends StatelessWidget {
   final double? borderWidth; // + 可选边框宽度
   final Color? backgroundColor;
   final Widget? child;
+  final EdgeInsets? padding;
 
   const CusGridentBorderContainer({
     super.key,
@@ -20,6 +21,7 @@ class CusGridentBorderContainer extends StatelessWidget {
     this.radius,
     this.borderWidth,
     this.backgroundColor,
+    this.padding
   });
 
   @override
@@ -49,7 +51,10 @@ class CusGridentBorderContainer extends StatelessWidget {
           ),
         ),
         // 第三层：内容（不用 Positioned.fill！让 child 决定 Stack 尺寸）
-        if (child != null) child!,
+        if (child != null) Padding(
+          padding: padding??EdgeInsets.zero,
+          child: child!,
+        ),
       ],
     );
 
