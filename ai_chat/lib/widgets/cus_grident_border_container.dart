@@ -5,11 +5,10 @@ import 'package:flutter/material.dart';
 import 'dart:ui' as ui;
 
 class CusGridentBorderContainer extends StatelessWidget {
-  final double? width; // + 可选宽
-  final double? height; // + 可选高
+  final double? width;
+  final double? height;
   final double? radius;
-  final double? borderWidth; // + 可选边框宽度
-  final Color? backgroundColor;
+  final double? borderWidth;
   final Widget? child;
   final EdgeInsets? padding;
 
@@ -20,16 +19,14 @@ class CusGridentBorderContainer extends StatelessWidget {
     this.child,
     this.radius,
     this.borderWidth,
-    this.backgroundColor,
     this.padding
   });
 
   @override
   Widget build(BuildContext context) {
     final Widget stack = Stack(
-      clipBehavior: Clip.antiAlias, // + 防止圆角溢出
+      clipBehavior: Clip.antiAlias, 
       children: [
-        // // 第一层：磨砂填充
         Positioned.fill(
           child: ClipRRect(
             borderRadius: BorderRadius.circular(radius ?? 1000),
@@ -41,24 +38,20 @@ class CusGridentBorderContainer extends StatelessWidget {
             ),
           ),
         ),
-        // 第二层：边框
         Positioned.fill(
           child: CustomPaint(
             painter: GlassBorderPainter(
-              radius: radius, // + 传参数
-              borderWidth: borderWidth, // + 传参数
+              radius: radius,
+              borderWidth: borderWidth,
             ),
           ),
         ),
-        // 第三层：内容（不用 Positioned.fill！让 child 决定 Stack 尺寸）
         if (child != null) Padding(
           padding: padding??EdgeInsets.zero,
           child: child!,
         ),
       ],
     );
-
-    // 只有当显式指定了 width 或 height 时才用 SizedBox 约束
     if (width != null || height != null) {
       return SizedBox(width: width, height: height, child: stack);
     }
@@ -140,11 +133,11 @@ class GlassBorderPainter extends CustomPainter {
     );
 
     paint.shader = ui.Gradient.linear(
-      Offset(r, w),
-      Offset(1.5 * r, h),
+      Offset(w-(w-1.5*r), h),
+      Offset(r, h),
       [
-        Colors.white.withOpacity(0.25),
         Colors.white.withOpacity(0.9),
+        Colors.white.withOpacity(0.25),
       ],
     );
 

@@ -27,10 +27,14 @@ class _MsgItemState extends State<MsgItem> {
             child: Padding(
               padding: EdgeInsets.all(AppLayout.paddingSmall / 2),
               child: Center(
-                child: Image.asset(
-                  Assets.images.ai.path,
-                  width: 35,
-                  height: 35,
+                child: ClipOval(
+                  child: Image.asset(
+                    widget.message.isUser
+                        ? Assets.images.avatar.path
+                        : Assets.images.ai.path,
+                    width: 35,
+                    height: 35,
+                  ),
                 ),
               ),
             ),

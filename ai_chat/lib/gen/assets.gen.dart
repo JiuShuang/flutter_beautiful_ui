@@ -23,6 +23,9 @@ class $ImagesGen {
   /// File path: images/apple.svg
   String get apple => 'images/apple.svg';
 
+  /// File path: images/avatar.png
+  AssetGenImage get avatar => const AssetGenImage('images/avatar.png');
+
   /// File path: images/email.svg
   String get email => 'images/email.svg';
 
@@ -67,6 +70,7 @@ class $ImagesGen {
         add,
         ai,
         apple,
+        avatar,
         email,
         facebook,
         google,

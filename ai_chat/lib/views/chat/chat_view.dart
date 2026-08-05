@@ -14,6 +14,11 @@ class ChatView extends StatefulWidget {
 }
 
 class _ChatViewState extends State<ChatView> {
+
+  void _back(){
+    Navigator.pop(context);
+  }
+
   @override
   Widget build(BuildContext context) {
     return CusBackground(
@@ -27,10 +32,13 @@ class _ChatViewState extends State<ChatView> {
                 backgroundColor: Colors.transparent,
                 elevation: 0,
                 leading: Center(
-                  child: CusGridentBorderContainer(
-                    width: 40,
-                    height: 40,
-                    child: Center(child: Icon(Icons.keyboard_arrow_left)),
+                  child: GestureDetector(
+                    onTap: _back,
+                    child: CusGridentBorderContainer(
+                      width: 40,
+                      height: 40,
+                      child: Center(child: Icon(Icons.keyboard_arrow_left)),
+                    ),
                   ),
                 ),
                 title: CusGridentBorderContainer(
@@ -41,7 +49,7 @@ class _ChatViewState extends State<ChatView> {
                   child: Center(
                       child: Text(
                     "Model 2.2",
-                    style: AppTextStyle.bodySmall,
+                    style: AppTextStyle.bodyMedium,
                   )),
                 ),
                 actions: [
