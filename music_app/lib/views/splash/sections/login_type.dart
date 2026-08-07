@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:music_app/config/app_style.dart';
 import 'package:music_app/gen/assets.gen.dart';
-import 'package:music_app/views/signin/sign_in_view.dart';
+import 'package:music_app/views/sign_in/sign_in_view.dart';
+import 'package:music_app/views/sign_up/sign_up_view.dart';
 
 class LoginType extends StatefulWidget {
   const LoginType({super.key});
@@ -44,6 +45,11 @@ class _LoginTypeState extends State<LoginType>
         context, MaterialPageRoute(builder: (context) => SignInView()));
   }
 
+  void _tapSignUp() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => SignUpView()));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -80,7 +86,7 @@ class _LoginTypeState extends State<LoginType>
               style: TextButton.styleFrom(
                   backgroundColor: Color(0xffDF3131),
                   minimumSize: Size(MediaQuery.sizeOf(context).width, 56)),
-              onPressed: () {},
+              onPressed: _tapSignUp,
               child: Text(
                 "Sign up for free",
                 style: TextStyle(fontSize: 18, color: AppColors.textColor),

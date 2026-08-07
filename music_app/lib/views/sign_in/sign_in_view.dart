@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:music_app/config/app_style.dart';
 import 'package:music_app/gen/assets.gen.dart';
+import 'package:music_app/views/step/step_view.dart';
 import 'package:music_app/widgets/cus_background.dart';
 
 class SignInView extends StatefulWidget {
@@ -15,7 +16,10 @@ class _SignInViewState extends State<SignInView> {
   ValueNotifier<bool> _hasAccount = ValueNotifier(false);
   ValueNotifier<bool> _hasPassword = ValueNotifier(false);
 
-  void _tapSignIn() {}
+  void _tapSignIn() {
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => StepView()));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -37,6 +41,7 @@ class _SignInViewState extends State<SignInView> {
       ),
       body: Column(
         children: [
+          SizedBox(height: MediaQuery.sizeOf(context).height * 0.1),
           ListenableBuilder(
             listenable: _hasAccount,
             builder: (context, child) {
