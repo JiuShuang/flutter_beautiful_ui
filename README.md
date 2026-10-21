@@ -87,6 +87,6 @@ Watch these projects in action and stay updated with my latest Flutter explorati
 
    <img src="https://img.shields.io/badge/Red-FF0000?style=flat-square&logo=xiaohongshu&logoColor=white" alt="Xiaohongshu"></a> **Xiaohongshu**: 6368583406
 
-   <img src="https://img.shields.io/badge/WeChat-07C160?style=flat-square&logo=wechat&logoColor=white" alt="WeChat"></a> **WeChat**: WiveHYL
+   <img src="https://img.shields.io/badge/WeChat-07C160?style=flat-square&logo=wechat&logoColor=white" alt="WeChat"></a> **WeChat**: JiuCode
 
   <img src="https://img.shields.io/badge/Email-D14836?style=flat-square&logo=gmail&logoColor=white" alt="Email"></a> **Email**: 1017299634@qq.com
